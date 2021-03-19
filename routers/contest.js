@@ -7,7 +7,7 @@ Router.post('/',async (req,res)=>{ // working
         const contest = await Contest.create(req.body)
         res.send({contest,success:true})
     } catch (error) {
-        res.send({error,success:false})
+        res.status(400).send({error,success:false})
     }
 })
 Router.post('/addp',async (req,res)=>{ // working
