@@ -26,4 +26,16 @@ Router.get('/',async (req,res)=>{ // done
         res.status(400).send({success:false})
     }
 })
+Router.post('/link',async (req,res)=>{ // working 
+    try {
+        const q1 = await Location.findById(req.body.a1)
+        const q2 = await Location.findById(req.body.a2)
+        q1.next_location = q2._id
+        await q1.save()
+        
+    } catch (error) {
+        console.log(error)
+        res.send(error)
+    }
+})
 module.exports = Router

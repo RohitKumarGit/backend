@@ -73,18 +73,7 @@ Router.post('/',async (req,res)=>{
         res.status(400).send()
     }
 })
-Router.post('/link',async (req,res)=>{ // working 
-    try {
-        const q1 = await Questions.findById(req.body.q1)
-        const q2 = await Questions.findById(req.body.q2)
-        q1.next_location = q2._id
-        await q1.save()
-        
-    } catch (error) {
-        console.log(error)
-        res.send(error)
-    }
-})
+
 Router.get('/',async (req,res)=>{ // working
     try {
         const question = await Questions.findById(req.body.question_id)
