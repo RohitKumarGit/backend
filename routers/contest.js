@@ -5,9 +5,9 @@ const Participant = require('../models/participant')
 Router.post('/',async (req,res)=>{ // working
     try {
         const contest = await Contest.create(req.body)
-        res.send(contest)
+        res.send({contest,success:true})
     } catch (error) {
-        res.send(error)
+        res.send({error,success:false})
     }
 })
 Router.post('/addp',async (req,res)=>{ // working
