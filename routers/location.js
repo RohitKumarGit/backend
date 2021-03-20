@@ -35,7 +35,7 @@ Router.post('/link',async (req,res)=>{ // working
         
     } catch (error) {
         console.log(error)
-        res.send(error)
+        res.status(400).send(error)
     }
 })
 module.exports = Router
