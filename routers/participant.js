@@ -26,22 +26,25 @@ Router.post('/verify',async (req,res)=>{
     try {
        const pass = true
        // curr location will be set for start point at t=0
-       participant.is_on_move = !pass
+      
        const participant = await Participant.findById(req.body.id).populate("next_location")
+       participant.is_on_move = !pass
        const m = participant.next_location
-       
+       console.log(m)
        
        if(m.is_last){
-
-        res.send({verified:pass,isLast:true})
+        participant.at_final = true
+        await participant.save() 
+        res.send({verified:pass,isLast:true,participant})
         }
         else {
             participant.curr_location = m._id
             await participant.save() 
-            res.send({verified:pass,isLast:false})
+            res.send({verified:pass,isLast:false,participant})
         }
-       
+        
     } catch (error) {
+        console.log(error)
         res.status(400).send(error)
     }
     
