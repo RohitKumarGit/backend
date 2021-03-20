@@ -15,7 +15,7 @@ Router.post("/",async (req,res)=>{ // working
             
             const newp = await Participant.create(req.body.data)
             // data : name , uid , email
-            res.send({isNew:true,newp})
+            res.send({isNew:true,participant:newp})
         }
     } catch (error) {
         console.log(error)
